@@ -16,4 +16,4 @@ int Object::getObjectCount() {
     return objectCount;
 }
 
-Object::~Object() {}
+Object::~Object() = default;
