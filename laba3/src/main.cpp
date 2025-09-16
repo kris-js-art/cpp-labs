@@ -14,7 +14,7 @@ void clearInputBuffer() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-void addStudent(Student*& students, int& studentCount) {
+void addStudent(Student *&students, int &studentCount) {
     std::string name;
     std::string faculty;
     int year;
@@ -72,7 +72,7 @@ void addStudent(Student*& students, int& studentCount) {
     }
 }
 
-void displayStudents(const Student* students, int studentCount) {
+void displayStudents(const Student *students, int studentCount) {
     if (studentCount == 0) {
         std::cout << "No students in the system." << std::endl;
     } else {
@@ -83,7 +83,7 @@ void displayStudents(const Student* students, int studentCount) {
 }
 
 int main() {
-    Student* students = nullptr;
+    Student *students = nullptr;
     int studentCount = 0;
     int choice;
 
