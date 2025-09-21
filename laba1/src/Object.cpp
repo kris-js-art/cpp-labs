@@ -1,4 +1,4 @@
-#include "Object.h"
+#include "../include/Object.h"
 #include <iostream>
 
 int Object::objectCount = 0;

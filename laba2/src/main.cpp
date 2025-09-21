@@ -1,6 +1,8 @@
 #include "../include/Matrix.h"
 #include "../include/Functions.h"
 
+const int EXIT_OPTION = 0;
+
 using namespace std;
 
 int main() {
@@ -29,78 +31,44 @@ int main() {
         clearInputBuffer();
 
         switch (choice) {
-            case 1: {
-                cin >> matrix1;
-                cout << "First matrix set:" << endl;
-                showMatrixInfo(matrix1, "First");
-                break;
-            }
-            case 2: {
-                cin >> matrix2;
-                cout << "Second matrix set:" << endl;
-                showMatrixInfo(matrix2, "Second");
-                break;
-            }
-            case 3: {
-                matrix1.clear();
-                cout << "First matrix cleared" << endl;
-                break;
-            }
-            case 4: {
-                matrix2.clear();
-                cout << "Second matrix cleared" << endl;
-                break;
-            }
-            case 5: {
-                showMatrixInfo(matrix1, "First");
-                showMatrixInfo(matrix2, "Second");
-                break;
-            }
-            case 6: {
-                if (matrix1.getRows() == 0 || matrix1.getCols() == 0 ||
-                    matrix2.getRows() == 0 || matrix2.getCols() == 0) {
-                    cout << "Error: one or both matrices are empty!" << endl;
-                    break;
-                }
-                try {
-                    result = matrix1 + matrix2;
-                    cout << "Addition completed successfully!" << endl;
-                    cout << "Result size: " << result.getRows() << "x" << result.getCols() << endl;
-                } catch (const exception &e) {
-                    cout << "Error: " << e.what() << endl;
-                }
-                break;
-            }
-            case 7: {
-                if (result.getRows() > 0 && result.getCols() > 0) {
-                    cout << "Result (" << result.getRows() << "x" << result.getCols() << "):" << endl;
-                    cout << result;
-                } else {
-                    cout << "Result not yet calculated or empty" << endl;
-                }
-                break;
-            }
-            case 8: {
-                result.clear();
-                cout << "Result cleared" << endl;
-                break;
-            }
-            case 0: {
+            case 1:
+                enterFirstMatrix(matrix1);
+            break;
+            case 2:
+                enterSecondMatrix(matrix2);
+            break;
+            case 3:
+                clearFirstMatrix(matrix1);
+            break;
+            case 4:
+                clearSecondMatrix(matrix2);
+            break;
+            case 5:
+                showMatrices(matrix1, matrix2);
+            break;
+            case 6:
+                addMatrices(matrix1, matrix2, result);
+            break;
+            case 7:
+                showResult(result);
+            break;
+            case 8:
+                clearResult(result);
+            break;
+            case 0:
                 cout << "Exiting program..." << endl;
-                break;
-            }
-            default: {
+            break;
+            default:
                 cout << "Invalid choice! Please try again." << endl;
-                break;
-            }
+            break;
         }
 
-        if (choice != 0) {
+        if (choice != EXIT_OPTION) {
             cout << "\nPress Enter to continue...";
             cin.get();
         }
 
-    } while (choice != 0);
+    } while (choice != EXIT_OPTION);
 
     return 0;
 }
