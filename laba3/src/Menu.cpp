@@ -3,7 +3,6 @@
 #include <limits>
 #include <span>
 
-
 void displayMenu() {
     std::cout << "1. Add new student" << std::endl;
     std::cout << "2. Display all students" << std::endl;
@@ -16,7 +15,7 @@ void clearInputBuffer() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-void addStudent(std::span<Student>& studentsSpan, int& studentCount) {
+void addStudent(std::span<Student *> &studentsSpan, int &studentCount) {
     std::string name;
     std::string faculty;
     int year;
@@ -35,7 +34,7 @@ void addStudent(std::span<Student>& studentsSpan, int& studentCount) {
     std::cout << "Enter number of exams: ";
     std::cin >> examCount;
 
-    Student* students = studentsSpan.data();
+    auto *newStudent = new Student(name, year, faculty);
 
     if (examCount > 0) {
         auto exams = new int[examCount];
@@ -44,48 +43,36 @@ void addStudent(std::span<Student>& studentsSpan, int& studentCount) {
             std::cin >> exams[i];
         }
         clearInputBuffer();
-
-        auto temp = new Student[studentCount + 1];
-        for (int i = 0; i < studentCount; ++i) {
-            temp[i] = students[i];
-        }
-
-        temp[studentCount] = Student(name, year, faculty);
-        temp[studentCount].setExamResults(exams, examCount);
-
-        delete[] students;
+        newStudent->setExamResults(exams, examCount);
         delete[] exams;
-
-        students = temp;
-        studentCount++;
-
-        studentsSpan = std::span<Student>(students, studentCount);
-
-        std::cout << "Student added successfully!" << std::endl;
-    } else {
-        auto temp = new Student[studentCount + 1];
-        for (int i = 0; i < studentCount; ++i) {
-            temp[i] = students[i];
-        }
-
-        temp[studentCount] = Student(name, year, faculty);
-
-        delete[] students;
-        students = temp;
-        studentCount++;
-
-        studentsSpan = std::span<Student>(students, studentCount);
-
-        std::cout << "Student added successfully!" << std::endl;
     }
+
+    Student **oldStudents = studentsSpan.data();
+    auto **newStudents = new Student *[studentCount + 1];
+
+    for (int i = 0; i < studentCount; ++i) {
+        newStudents[i] = oldStudents[i];
+    }
+
+    newStudents[studentCount] = newStudent;
+
+
+    delete[] oldStudents;
+
+
+    studentsSpan = std::span<Student *>(newStudents, studentCount + 1);
+    studentCount++;
+
+    std::cout << "Student added successfully!" << std::endl;
 }
 
-void displayStudents(std::span<Student> studentsSpan) {
+void displayStudents(std::span<Student *> studentsSpan) {
     if (studentsSpan.empty()) {
         std::cout << "No students in the system." << std::endl;
     } else {
-        for (const auto& student : studentsSpan) {
-            student.display();
+        for (const auto &student: studentsSpan) {
+            student->display();
+            std::cout << "-------------------" << std::endl;
         }
     }
 }

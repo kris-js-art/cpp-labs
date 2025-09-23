@@ -17,7 +17,7 @@ public:
     Fakultet& operator=(const Fakultet& other);
 
     void setFacultyName(std::string_view name);
-    std::string getFacultyName() const;
+    [[nodiscard]] std::string getFacultyName() const;
 
     virtual void display() const;
 };
