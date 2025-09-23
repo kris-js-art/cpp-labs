@@ -16,9 +16,9 @@ public:
 
     ~Matrix();
 
-    int getRows() const { return rows; }
+    [[nodiscard]] int getRows() const { return rows; }
 
-    int getCols() const { return cols; }
+    [[nodiscard]] int getCols() const { return cols; }
 
     void resize(int newRows, int newCols);
 

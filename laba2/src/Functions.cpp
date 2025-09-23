@@ -48,7 +48,7 @@ void addMatrices(const Matrix &matrix1, const Matrix &matrix2, Matrix &result) {
         matrix2.getRows() == 0 || matrix2.getCols() == 0) {
         cout << "Error: one or both matrices are empty!" << endl;
         return;
-        }
+    }
 
     result = matrix1 + matrix2;
     cout << "Addition completed successfully!" << endl;
