@@ -1,5 +1,5 @@
+#pragma once
 #include <iostream>
-#include <limits>
 #include "Matrix.h"
 
 #ifndef FUNCTIONS_H

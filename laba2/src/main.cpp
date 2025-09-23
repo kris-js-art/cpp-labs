@@ -1,7 +1,7 @@
 #include "../include/Matrix.h"
 #include "../include/Functions.h"
 
-const int EXIT_OPTION = 0;
+constexpr int EXIT_OPTION = 0;
 
 using namespace std;
 
@@ -33,41 +33,40 @@ int main() {
         switch (choice) {
             case 1:
                 enterFirstMatrix(matrix1);
-            break;
+                break;
             case 2:
                 enterSecondMatrix(matrix2);
-            break;
+                break;
             case 3:
                 clearFirstMatrix(matrix1);
-            break;
+                break;
             case 4:
                 clearSecondMatrix(matrix2);
-            break;
+                break;
             case 5:
                 showMatrices(matrix1, matrix2);
-            break;
+                break;
             case 6:
                 addMatrices(matrix1, matrix2, result);
-            break;
+                break;
             case 7:
                 showResult(result);
-            break;
+                break;
             case 8:
                 clearResult(result);
-            break;
+                break;
             case 0:
                 cout << "Exiting program..." << endl;
-            break;
+                break;
             default:
                 cout << "Invalid choice! Please try again." << endl;
-            break;
+                break;
         }
 
         if (choice != EXIT_OPTION) {
             cout << "\nPress Enter to continue...";
             cin.get();
         }
-
     } while (choice != EXIT_OPTION);
 
     return 0;

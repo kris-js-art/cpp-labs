@@ -1,8 +1,7 @@
 #include "../include/Matrix.h"
-#include <stdexcept>
 
 
-Matrix::Matrix(int r, int c) : rows(r), cols(c) {
+Matrix::Matrix(const int r, const int c) : rows(r), cols(c) {
     if (rows > 0 && cols > 0) {
         data = new int *[rows];
         for (auto i = 0; i < rows; i++) {

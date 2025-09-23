@@ -1,5 +1,5 @@
 #include "../include/Functions.h"
-
+#include <limits>
 using namespace std;
 
 void clearInputBuffer() {
