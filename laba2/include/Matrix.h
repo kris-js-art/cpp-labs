@@ -26,7 +26,8 @@ public:
 
     friend Matrix operator+(const Matrix &lhs, const Matrix &rhs) {
         if (lhs.rows != rhs.rows || lhs.cols != rhs.cols) {
-            throw std::invalid_argument("Matrix's should be equal size ");
+            std::cout << "Matrices should be equal size!" << std::endl;
+            exit(1);
         }
 
         Matrix result(lhs.rows, lhs.cols);

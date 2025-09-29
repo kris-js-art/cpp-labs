@@ -1,5 +1,7 @@
-#include "../include/Object.h"
 #include <iostream>
+#include "Object.h"
+
+using namespace std;
 
 int Object::objectCount = 0;
 
@@ -9,7 +11,7 @@ Object::Object() {
 }
 
 void Object::displaySerialNumber() const {
-    std::cout << "My number: " << serialNumber << std::endl;
+    cout << "My number: " << serialNumber << endl;
 }
 
 int Object::getObjectCount() {

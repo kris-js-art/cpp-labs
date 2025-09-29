@@ -2,7 +2,7 @@
 #include <iostream>
 #include <span>
 
-const int EXIT_OPTION = 3;
+constexpr int EXIT_OPTION = 3;
 
 int main() {
     Student** students = nullptr;
@@ -19,7 +19,7 @@ int main() {
         switch (choice) {
             case 1:
                 addStudent(studentsSpan, studentCount);
-            students = studentsSpan.data();
+                students = studentsSpan.data();
             break;
 
             case 2:

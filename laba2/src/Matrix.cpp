@@ -1,6 +1,5 @@
 #include "../include/Matrix.h"
 
-
 Matrix::Matrix(const int r, const int c) : rows(r), cols(c) {
     if (rows > 0 && cols > 0) {
         data = new int *[rows];
