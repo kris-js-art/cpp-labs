@@ -8,8 +8,10 @@ private:
     int rows;
     int cols;
     int **data;
+    static bool autoSize;
 
 public:
+
     explicit Matrix(int r = 0, int c = 0);
 
     Matrix(const Matrix &other);
@@ -23,6 +25,8 @@ public:
     void resize(int newRows, int newCols);
 
     void clear();
+
+    static void setAutoSize(bool flag) {autoSize = flag;}
 
     friend Matrix operator+(const Matrix &lhs, const Matrix &rhs) {
         if (lhs.rows != rhs.rows || lhs.cols != rhs.cols) {
@@ -57,25 +61,27 @@ public:
     }
 
     friend std::istream &operator>>(std::istream &is, Matrix &matrix) {
-        auto r = 0;
-        auto c = 0;
+        if (!autoSize) {
+            auto r = 0;
+            auto c = 0;
 
-        std::cout << "Enter amount of rows: ";
-        is >> r;
-        std::cout << "Enter amount of cols: ";
-        is >> c;
+            std::cout << "Enter amount of rows: ";
+            is >> r;
+            std::cout << "Enter amount of cols: ";
+            is >> c;
 
-        if (r <= 0 || c <= 0) {
-            matrix.clear();
-            std::cout << "Matrix is cleaned" << std::endl;
-            return is;
+            if (r <= 0 || c <= 0) {
+                matrix.clear();
+                std::cout << "Matrix is cleaned" << std::endl;
+                return is;
+            }
+
+            matrix.resize(r, c);
         }
 
-        matrix.resize(r, c);
-
-        std::cout << "Enter element " << r << "x" << c << ":" << std::endl;
-        for (auto i = 0; i < r; i++) {
-            for (auto j = 0; j < c; j++) {
+        std::cout << "Enter elements " << matrix.rows << "x" << matrix.cols << ":" << std::endl;
+        for (auto i = 0; i < matrix.rows; i++) {
+            for (auto j = 0; j < matrix.cols; j++) {
                 std::cout << "Element [" << i << "][" << j << "]: ";
                 is >> matrix.data[i][j];
             }
@@ -84,5 +90,7 @@ public:
         return is;
     }
 };
+
+
 
 #endif

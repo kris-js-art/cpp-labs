@@ -1,6 +1,7 @@
 #include "../include/Matrix.h"
 
-Matrix::Matrix(const int r, const int c) : rows(r), cols(c) {
+
+Matrix::Matrix(int r, int c) : rows(r), cols(c) {
     if (rows > 0 && cols > 0) {
         data = new int *[rows];
         for (auto i = 0; i < rows; i++) {
@@ -11,7 +12,9 @@ Matrix::Matrix(const int r, const int c) : rows(r), cols(c) {
     }
 }
 
-Matrix::Matrix(const Matrix &other) : rows(other.rows), cols(other.cols) {
+bool Matrix::autoSize = false;
+
+[[maybe_unused]] Matrix::Matrix(const Matrix &other) : rows(other.rows), cols(other.cols) {
     if (rows > 0 && cols > 0) {
         data = new int *[rows];
         for (auto i = 0; i < rows; i++) {

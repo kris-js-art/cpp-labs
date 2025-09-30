@@ -8,15 +8,24 @@ void clearInputBuffer() {
     cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
 }
 
-void addMatrices(Matrix &matrix1, Matrix &matrix2, Matrix &result) {
-    cin >> matrix1;
-    cin >> matrix2;
 
-    if (matrix1.getRows() == 0 || matrix1.getCols() == 0 ||
-        matrix2.getRows() == 0 || matrix2.getCols() == 0) {
-        cout << "Error: one or both matrices are empty!" << endl;
+
+void addMatrices(Matrix &matrix1, Matrix &matrix2, Matrix &result) {
+    Matrix::setAutoSize(false);
+    cin >> matrix1;
+
+    if (matrix1.getRows() == 0 || matrix1.getCols() == 0) {
+        cout << "Error: first matrix is empty!" << endl;
         return;
     }
+
+    Matrix::setAutoSize(true);
+    matrix2.resize(matrix1.getRows(), matrix1.getCols());
+    cout << "Second matrix size automatically set to " << matrix1.getRows()
+         << "x" << matrix1.getCols() << endl;
+    cin >> matrix2;
+
+    Matrix::setAutoSize(false);
 
     result = matrix1 + matrix2;
     cout << "Addition completed successfully!" << endl;
