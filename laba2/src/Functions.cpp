@@ -8,8 +8,6 @@ void clearInputBuffer() {
     cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
 }
 
-
-
 void addMatrices(Matrix &matrix1, Matrix &matrix2, Matrix &result) {
     Matrix::setAutoSize(false);
     cin >> matrix1;
