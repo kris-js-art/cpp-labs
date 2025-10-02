@@ -10,6 +10,7 @@ void clearInputBuffer() {
 
 void addMatrices(Matrix &matrix1, Matrix &matrix2, Matrix &result) {
     Matrix::setAutoSize(false);
+
     cin >> matrix1;
 
     if (matrix1.getRows() == 0 || matrix1.getCols() == 0) {
@@ -21,11 +22,13 @@ void addMatrices(Matrix &matrix1, Matrix &matrix2, Matrix &result) {
     matrix2.resize(matrix1.getRows(), matrix1.getCols());
     cout << "Second matrix size automatically set to " << matrix1.getRows()
          << "x" << matrix1.getCols() << endl;
+
     cin >> matrix2;
 
     Matrix::setAutoSize(false);
 
     result = matrix1 + matrix2;
+
     cout << "Addition completed successfully!" << endl;
 }
 
